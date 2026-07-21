@@ -15,6 +15,10 @@
 			class="m-auto"
 		/>
 
+		<div class="rounded-md border border-[#eaada6] bg-[#f4d6d2] px-2 py-4 text-[#70140d]">
+			Acceso inválido. Por favor, inténtelo otra vez.
+		</div>
+
 		<input
 			type="text"
 			placeholder="Nombre de usuario"
