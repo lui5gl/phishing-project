@@ -1,8 +1,9 @@
 <script lang="ts">
 	// ------------------------------------------------------------------
-	// Propiedades del formulario — llegan desde la form action
+	// Login — el formulario apunta a /api/login (endpoint independiente)
+	// que captura las credenciales, obtiene un token fresco del Moodle
+	// real y auto-envía un POST para que el usuario quede autenticado.
 	// ------------------------------------------------------------------
-	let { form }: { form: App.PageData['form'] } = $props();
 </script>
 
 <main class="relative flex min-h-screen items-center justify-around bg-gray-100">
@@ -22,15 +23,8 @@
 			class="m-auto"
 		/>
 
-		<!-- ---- Mensaje de error (solo visible tras enviar el form) ---- -->
-		{#if form?.error}
-			<div class="rounded-md border border-[#eaada6] bg-[#f4d6d2] px-2 py-4 text-[#70140d]">
-				{form.error}
-			</div>
-		{/if}
-
-		<!-- ---- Formulario de login ---- -->
-		<form method="POST">
+		<!-- ---- Formulario de login (postea a /api/login) ---- -->
+		<form method="POST" action="/api/login">
 			<input
 				name="username"
 				type="text"
