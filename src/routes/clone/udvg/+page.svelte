@@ -1,3 +1,10 @@
+<script lang="ts">
+	// ------------------------------------------------------------------
+	// Propiedades del formulario — llegan desde la form action
+	// ------------------------------------------------------------------
+	let { form }: { form: App.PageData['form'] } = $props();
+</script>
+
 <main class="relative flex min-h-screen items-center justify-around bg-gray-100">
 	<!-- Background -->
 	<img
@@ -15,25 +22,34 @@
 			class="m-auto"
 		/>
 
-		<div class="rounded-md border border-[#eaada6] bg-[#f4d6d2] px-2 py-4 text-[#70140d]">
-			Acceso inválido. Por favor, inténtelo otra vez.
-		</div>
+		<!-- ---- Mensaje de error (solo visible tras enviar el form) ---- -->
+		{#if form?.error}
+			<div class="rounded-md border border-[#eaada6] bg-[#f4d6d2] px-2 py-4 text-[#70140d]">
+				{form.error}
+			</div>
+		{/if}
 
-		<input
-			type="text"
-			placeholder="Nombre de usuario"
-			class="mt-4 w-full rounded-[0.6rem] border border-[#8f959e] px-3 py-2 focus:outline-none"
-		/>
-		<input
-			type="password"
-			placeholder="Contraseña"
-			class="mt-4 w-full rounded-[0.6rem] border border-[#8f959e] px-3 py-2 focus:outline-none"
-		/>
-		<input
-			type="submit"
-			value="Acceder"
-			class="mt-4 w-full cursor-pointer rounded bg-[#011946] py-2 text-white focus:outline-none"
-		/>
+		<!-- ---- Formulario de login ---- -->
+		<form method="POST">
+			<input
+				name="username"
+				type="text"
+				placeholder="Nombre de usuario"
+				class="mt-4 w-full rounded-[0.6rem] border border-[#8f959e] px-3 py-2 focus:outline-none"
+			/>
+			<input
+				name="password"
+				type="password"
+				placeholder="Contraseña"
+				class="mt-4 w-full rounded-[0.6rem] border border-[#8f959e] px-3 py-2 focus:outline-none"
+			/>
+			<input
+				type="submit"
+				value="Acceder"
+				class="mt-4 w-full cursor-pointer rounded bg-[#011946] py-2 text-white focus:outline-none"
+			/>
+		</form>
+
 		<hr class="my-4 border-t border-[#dee2e6]" />
 		<div class="flex flex-col items-center justify-center gap-2">
 			<a href="https://www.udv.edu.gt/" target="_blank" class=" text-[#011946] hover:underline">
